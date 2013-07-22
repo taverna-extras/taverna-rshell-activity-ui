@@ -1,6 +1,5 @@
 /*******************************************************************************
- * Copyright (C) 2009 Ingo Wassink of University of Twente, Netherlands and
- * The University of Manchester
+ * Copyright (C) 2013 The University of Manchester
  *
  *  Modifications to the initial code base are copyright of their
  *  respective authors, or their employers as appropriate.
@@ -19,37 +18,49 @@
  *  License along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
  ******************************************************************************/
-
-/**
- * @author Ingo Wassink
- * @author Ian Dunlop
- * @author Alan R Williams
- */
 package net.sf.taverna.t2.activities.rshell.views;
 
-import java.awt.Component;
-
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
-
+import uk.org.taverna.scufl2.api.port.ActivityPort;
 import net.sf.taverna.t2.activities.rshell.RshellPortTypes.SemanticTypes;
+import net.sf.taverna.t2.workbench.ui.views.contextualviews.activity.ActivityPortConfiguration;
 
 /**
- * Class which calls the 'getDescription' method instead of the toString. Was an
- * inner class in the original Taverna 1 code
  *
- * @author Ingo Wassink
- * @author Ian Dunlop
+ *
+ * @author David Withers
  */
-@SuppressWarnings("serial")
-public class PortTypesListCellRenderer extends DefaultListCellRenderer {
+public class RshellActivityPortConfiguration extends ActivityPortConfiguration {
 
-	public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-			boolean isSelected, boolean cellHasFocus) {
-		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+	private SemanticTypes semanticType;
 
-		this.setText(((SemanticTypes) value).description);
-		return this;
+	/**
+	 * Constructs a new <code>RshellActivityPortConfiguration</code>.
+	 * @param activityPort
+	 */
+	public RshellActivityPortConfiguration(ActivityPort activityPort, SemanticTypes semanticType) {
+		super(activityPort);
+		this.semanticType = semanticType;
+	}
+
+	public RshellActivityPortConfiguration(String name, SemanticTypes semanticType) {
+		super(name, semanticType.getDepth(), semanticType.getDepth());
+		this.semanticType = semanticType;
+	}
+
+	public SemanticTypes getSemanticType() {
+		return semanticType;
+	}
+
+	public void setSemanticType(SemanticTypes semanticType) {
+		this.semanticType = semanticType;
+	}
+
+	public int getDepth() {
+		return semanticType.getDepth();
+	}
+
+	public int getGranularDepth() {
+		return semanticType.getDepth();
 	}
 
 }
