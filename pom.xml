@@ -2,66 +2,83 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-                <groupId>net.sf.taverna</groupId>
+  <parent>
+<!-- TODO: Use our own parent -->
+                <groupId>org.apache.taverna</groupId>
                 <artifactId>taverna-parent</artifactId>
-                <version>3.0.1-SNAPSHOT</version>
-	</parent>
+                <version>1-incubating</version>
+  </parent>
+
 	<groupId>net.sf.taverna.t2.ui-activities</groupId>
 	<artifactId>rshell-activity-ui</artifactId>
-	<version>2.0.1-SNAPSHOT</version>
+	<version>2.1.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
-	<name>Taverna 2 RShell Activity UI.</name>
+	<name>Taverna RShell Activity UI</name>
+<licenses>
+    <license>
+      <name>LGPL 2.1</name>
+      <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1</url>
+      <distribution>repo</distribution>
+    </license>
+</licenses>
+<properties>
+  <taverna.language.version>0.15.0-incubating</taverna.language.version>
+  <taverna.engine.version>3.1.0-incubating-SNAPSHOT</taverna.engine.version>
+  <taverna.workbench.version>3.1.0-incubating-SNAPSHOT</taverna.workbench.version>
+  <rshell.activity.version>2.1.0-SNAPSHOT</rshell.activity.version>
+</properties>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.taverna.t2.activities</groupId>
 			<artifactId>rshell-activity</artifactId>
-			<version>${t2.activities.version}</version>
+			<version>${rshell.activity.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.taverna.t2.ui-api</groupId>
-			<artifactId>activity-icons-api</artifactId>
-			<version>${t2.ui.api.version}</version>
+			<groupId>org.apache.taverna.workbench</groupId>
+			<artifactId>taverna-activity-icons-api</artifactId>
+			<version>${taverna.workbench.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.taverna.t2.ui-api</groupId>
-			<artifactId>activity-palette-api</artifactId>
-			<version>${t2.ui.api.version}</version>
+			<groupId>org.apache.taverna.workbench</groupId>
+			<artifactId>taverna-activity-palette-api</artifactId>
+			<version>${taverna.workbench.version}</version>
 		</dependency>
 		<!-- <dependency>
-			<groupId>net.sf.taverna.t2.ui-impl</groupId>
-			<artifactId>contextual-views-impl</artifactId>
-			<version>${t2.ui.impl.version}</version>
+			<groupId>org.apache.taverna.workbench</groupId>
+			<artifactId>taverna-contextual-views-impl</artifactId>
+			<version>${taverna.workbench.version}</version>
 		</dependency> -->
 		<dependency>
-			<groupId>net.sf.taverna.t2.ui-api</groupId>
-			<artifactId>activity-tools</artifactId>
-			<version>${t2.ui.api.version}</version>
+			<groupId>org.apache.taverna.workbench</groupId>
+			<artifactId>taverna-activity-tools</artifactId>
+			<version>${taverna.workbench.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.taverna.t2.ui-components</groupId>
-			<artifactId>workflow-view</artifactId>
-			<version>${t2.ui.components.version}</version>
+			<groupId>org.apache.taverna.workbench</groupId>
+			<artifactId>taverna-workflow-view</artifactId>
+			<version>${taverna.workbench.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.taverna.t2.ui-components</groupId>
-			<artifactId>graph-view</artifactId>
-			<version>${t2.ui.components.version}</version>
+			<groupId>org.apache.taverna.workbench</groupId>
+			<artifactId>taverna-graph-view</artifactId>
+			<version>${taverna.workbench.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.taverna.t2.ui-components</groupId>
-			<artifactId>credential-manager-ui</artifactId>
-			<version>${t2.ui.components.version}</version>
+			<groupId>org.apache.taverna.workbench</groupId>
+			<artifactId>taverna-credential-manager-ui</artifactId>
+			<version>${taverna.workbench.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>uk.org.taverna.commons</groupId>
+			<groupId>org.apache.taverna.engine</groupId>
 			<artifactId>taverna-services-api</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${taverna.engine.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>uk.org.taverna.scufl2</groupId>
-			<artifactId>scufl2-api</artifactId>
-			<version>${scufl2.version}</version>
+			<groupId>org.apache.taverna.language</groupId>
+			<artifactId>taverna-scufl2-api</artifactId>
+			<version>${taverna.language.version}</version>
 		</dependency>
 
 		<dependency>
@@ -71,6 +88,15 @@
 		</dependency>
 	</dependencies>
 	<repositories>
+    <repository>
+      <id>apache.snapshots</id>
+      <name>Apache Snapshot Repository</name>
+      <url>http://repository.apache.org/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+
 		<repository>
 			<releases />
 			<snapshots>
@@ -92,9 +118,9 @@
 		</repository>
 	</repositories>
 	<scm>
-                <connection>scm:git:https://github.com/taverna/taverna-rshell-activity-ui.git</connection>
-                <developerConnection>scm:git:ssh://git@github.com/taverna/taverna-rshell-activity-ui.git</developerConnection>
-                <url>https://github.com/taverna/taverna-rshell-activity-ui/</url>
+                <connection>scm:git:https://github.com/taverna-extras/taverna-rshell-activity-ui.git</connection>
+                <developerConnection>scm:git:ssh://git@github.com/taverna-extras/taverna-rshell-activity-ui.git</developerConnection>
+                <url>https://github.com/taverna-extras/taverna-rshell-activity-ui/</url>
                 <tag>HEAD</tag>
         </scm>
 
